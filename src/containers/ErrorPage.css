@@ -1,0 +1,17 @@
+#error {
+	text-align: center;
+}
+#error img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+#error h3 {
+	margin-bottom: 30px;
+}
+
+@media (max-width: 575px) {
+	#error img {
+		width: 100%;
+	}
+}

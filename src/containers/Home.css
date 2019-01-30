@@ -1,0 +1,25 @@
+h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 10px;
+}
+#characterSelect img {
+	width: 100%;
+	border: 1px solid #d39e00;
+    border-radius: 5px;
+    transition: 0.3s all;
+}
+#characterSelect a:hover img {
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+    transform: scale(1.03);
+}
+
+#characterSelect .row>div {
+	margin-bottom: 30px;
+}
+
+@media (min-width: 992px) {
+	#characterSelect .row>div {
+		margin-bottom: 0;
+	}
+}
