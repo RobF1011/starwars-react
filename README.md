@@ -7,7 +7,7 @@ I decided to use React for this. It's currently my favorite JS framework/library
 
 For single page apps, I prefer to use React Router for the routes. Since this app needed to retrieve data from an API, I decided to use Axios for full browser compatibility. Fetch has decent browser support at this time, but it doesn't work in Internet Explorer. 
 
-As for a front-end/responsive framework, my preference is Bootstrap 4.
+As for a front-end/responsive framework, my preference is Bootstrap 4. Browser and device compatibility are always on the top of my mind and I ensure that everything I create works correctly and looks great no matter where it's viewed. 
 
 Webpack and Babel are used to package and transpile the ES6 code into something readable by all browsers.
 
