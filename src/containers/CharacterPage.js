@@ -7,34 +7,22 @@ import './CharacterPage.css';
 class CharacterPage extends Component {
 
 	constructor() {
-	 super();
-	 this.state = {
-	   movieAPIs: [],
-	   movies: [],
-	   characterName: "",
-	   isLoading: true,
-	   redirect: false
-	 };
+	 	super();
+	 	this.state = {
+	   		movieAPIs: [],
+	   		movies: [],
+	   		characterName: "",
+	   		isLoading: true,
+	   		redirect: false
+	 	};
 	}
 
-	handleErrors(response) {
-	    if (!response.ok) {
-	        throw Error(response.statusText);
-	    }
-	    return response;
-	}
-
-	componentWillMount() {
+	componentDidMount() {
 		let api = "https://swapi.co/api/people/" + this.props.characterId;
-
-		axios.get(api)
-			.then(res => this.setState({ characterName: res.data.name }))
-			.catch(error => this.setState({ redirect: true }) );
 			
-
 		axios.get(api)
 			.then(res => {
-				this.setState({ movieAPIs: res.data.films});
+				this.setState({ movieAPIs: res.data.films, characterName: res.data.name});
 				for (var i = 0; i < res.data.films.length; i++) {
 
 					axios.get(res.data.films[i])
@@ -67,8 +55,7 @@ class CharacterPage extends Component {
 				}
 
 			})
-
-		
+			.catch(error => this.setState({ redirect: true }) );	
 	}
 
 
@@ -79,23 +66,19 @@ class CharacterPage extends Component {
 		}
 	 
 	  	return (
-	    	this.state.isLoading ?
-		    <section id="movieInfo">
-		      <div className="lds-hourglass"></div>
-		    </section>
-
-	    :
-
-		    <section id="movieInfo">
-		    	<h1>{this.state.characterName} Film Appearances</h1>
-		    	<Link to="/"><button>Back</button></Link>
-		    	<div className="row">
-		      		{this.state.movies}
-		      	</div>
-		    </section>
+	  		<section id="movieInfo">
+	  			{this.state.isLoading ? <div className="lds-hourglass"></div> : 
+		  			<div>
+			  			<h1>{this.state.characterName} Film Appearances</h1>
+			  			<Link to="/"><button>Back</button></Link>
+			  			<div className="row">
+				      		{this.state.movies}
+				      	</div>
+			      	</div>
+		      	}
+	  		</section>  	
 	  	);
 	}
-
 }
 
 export default CharacterPage;
