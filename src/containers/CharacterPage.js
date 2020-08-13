@@ -18,14 +18,14 @@ class CharacterPage extends Component {
 	}
 
 	componentDidMount() {
-		let api = "https://swapi.dev/api/people/" + this.props.characterId;
+		const api = `https://swapi.dev/api/people/${this.props.characterId}/`;
 			
 		axios.get(api)
 			.then(res => {
 				this.setState({ movieAPIs: res.data.films, characterName: res.data.name});
-				for (var i = 0; i < res.data.films.length; i++) {
-
-					axios.get(res.data.films[i])
+				for (const filmURL of res.data.films) {
+					const httpsURL = filmURL.replace('http://', 'https://')
+					axios.get(httpsURL)
 						.then(res => {
 							let options = {  
 							  	weekday: 'long',
