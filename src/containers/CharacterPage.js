@@ -18,7 +18,7 @@ class CharacterPage extends Component {
 	}
 
 	componentDidMount() {
-		let api = "https://swapi.co/api/people/" + this.props.characterId;
+		let api = "https://swapi.dev/api/people/" + this.props.characterId;
 			
 		axios.get(api)
 			.then(res => {
