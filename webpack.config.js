@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   module: {
@@ -41,6 +42,11 @@ module.exports = {
       template: path.resolve(__dirname, 'public', 'index.html'), // Correct path to src/index.html
       filename: 'index.html', // This will output the file in the dist folder
       favicon: path.resolve(__dirname, 'public', 'favicon.ico')
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: path.resolve(__dirname, 'public/images'), to: 'images' }, // Copies only the images folder
+      ],
     })
   ],
   resolve: {
@@ -49,6 +55,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    publicPath: '/',
     clean: true
   }
 };
