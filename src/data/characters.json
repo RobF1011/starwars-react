@@ -1,0 +1,24 @@
+ {
+  "characters": [
+    {
+      "name": "Luke Skywalker",
+      "url": "https://swapi.dev/api/people/1/",
+      "image": "luke_skywalker.jpg"
+    },
+    {
+      "name": "Darth Vader",
+      "url": "https://swapi.dev/api/people/4/",
+      "image": "darth_vader.jpg"
+    },
+    {
+      "name": "Obi-wan Kenobi",
+      "url": "https://swapi.dev/api/people/unknown/",
+      "image": "obi-wan_kenobi.jpg"
+    }, 
+    {
+      "name": "R2-D2",
+      "url": "https://swapi.dev/api/people/3/",
+      "image": "R2-D2.jpg"
+    }
+  ]
+}
