@@ -1,14 +1,15 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: ["@babel/polyfill", "./src"],
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: "babel-loader",
         }
       },
       {
@@ -18,23 +19,43 @@ module.exports = {
             loader: "html-loader"
           }
         ]
-      },{
-          test: /\.css$/,
-          loaders: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"]
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        loader: 'url-loader'
+        type: 'asset/resource' // Use Webpack 5's asset modules for images
       }
     ]
   },
   devServer: {
     historyApiFallback: true,
+    hot: true,
+    static: path.join(__dirname, 'public'), // Serve public folder statically
+    compress: true,
+    port: 3000,
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html"
+      template: path.resolve(__dirname, 'public', 'index.html'), // Correct path to src/index.html
+      filename: 'index.html', // This will output the file in the dist folder
+      favicon: path.resolve(__dirname, 'public', 'favicon.ico')
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: path.resolve(__dirname, 'public/images'), to: 'images' }, // Copies only the images folder
+      ],
     })
-  ]
+  ],
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: '/',
+    clean: true
+  }
 };
